@@ -26,23 +26,23 @@ The Python environment is created to use the DeepPurpose tool and PRS analysis. 
 
 ### Usage
 
-#### Step1: Prepare
+#### Step0: Prepare
 Download this repository to your local machine and extract it. Then, in R, set the working directory to the extracted folder and load the required packages:
 ```
 setwd("this_file_path/SnpDR")
 source("Rscript/0.Load_packages.R")
 ```
 
-#### Step2: Signatrue Module
+#### Step1: Signatrue Module
 Preprocess the expression profile data.
 ```
 source("Rscript/1.Signatrue.R")
 expr_process(df_file="path/expression.txt")	#In the file:the rows represent proteins, and the columns represent samples.
 ```
 
-#### Step3: Network Analysis Module
+#### Step2: Network Analysis Module
 ```
-source("Rscript/1.Network_analysis.R")
+source("Rscript/2.Network_analysis.R")
 ```
 ##### Identify network modules
 ```
@@ -159,3 +159,66 @@ Independence(node_file,expr_file1,expr_file2)
 
 * _expr_file1_: The TXT file storing Proteomic expression profile, with the same format as above.
 * _expr_file2_: The TXT file storing the expression profile of another independent cohort, with the same format as above.
+
+#### Step3: Perturbation Response Scanning Module
+```
+source("Rscript/3.PRS.R")
+```
+##### Construct a drug response network
+```
+getDRN(expr_file)
+```
+* _expr_file_: The TXT file storing expression profile of a specified module, with the following format:
+
+##### Weight the drug response network
+```
+getAffinity(smiles_file,seq_file,DRN_file,py_env,pretrained_model='MPNN_CNN_BindingDB_IC50')
+```
+* _smiles_file_: The TXT file storing drug smiles.
+
+  | drug | SMILES |
+  | --- | --- |
+  | drug1 |	C1=CC=C(C=C1)NC(=O)CCCCCCC(=O)NO |
+  | drug2 |	C1=CC(=CC=C1/C=C\2/C(=O)NC(=N)S2)O |
+  | drug3 | C1=C(C(=O)NC(=O)N1)F |
+  | ... | ... |
+
+* _seq_file_: The TXT file storing protein sequence. 
+
+  | protein | Sequence |
+  | --- | --- |
+  | protein1 | MAADISESSGADCKGDPRNSAKLDADYPLRVLYCGVCSLPTEYCEYMPDVAKCRQWLEKNFPNEFAKLTVENSPKQEAGISEGQGTAGEEEEKKKQKRGGRGQIKQKKKTVPQKVTIAKIPRAKKKYVTRVCGLATFEIDLKEAQRFFAQKFSCGASVTGEDEIIIQGDFTDDIIDVIQEKWPEVDDDSIEDLGEVKK |
+  | protein2 | MPLAKDLLHPSPEEEKRKHKKKRLVQSPNSYFMDVKCPGCYKITTVFSHAQTVVLCVGCSTVLCQPTGGKARLTEGCSFRRKQH |
+  | protein3 | MPGPTPSGTNVGSSGRSPSKAVAARAAGSTVRQRKNASCGTRSAGRTTSAGTGGMWRFYTEDSPGLKVGPVPVLVMSLLFIASVFMLHIWGKYTRS |
+  | ... | ... |
+  
+* _DRN_file_: The TXT file storing the predicted drug response network by `getDRN` function.
+* _py_env_: The virtual environment path for pyUser installed using anaconda3, which can be obtained by running `conda env list` in `Anaconda Prompt`.
+* _pretrained_model_: The DeepPurpose model type used, which defaults to 'MPNN_CNN_BindingDB_IC50'.
+
+##### Calculat drug score
+```
+getPS(BA_file,PPIN_file,py_env)
+```
+* _BA_file_: The path to the binding affinity file (.txt) predicted by the `getAffinity` function.
+* _PPIN_file_: The path to the PPI network file (.txt) . This file contains protein-protein interactions with columns named gene1 and gene2.
+  |gene1| gene2 |
+  | --- | --- |
+  | pro1 | pro2 |
+  | pro2 | pro3 |
+  | ... | ... |
+* _py_env_: The virtual environment path for pyUser installed using anaconda3, same as  `getAffinity`.
+
+#### Step4: Prediction Module
+```
+source("Rscript/4.Prediction.R")
+
+sensPredict(node_file,cell="LUSC")
+```
+* _node_file_: The TXT file storing nodes for a specified module.
+  |node|
+  | --- |
+  | pro1 |
+  | pro2 |
+  | ... |
+* _cell_: Cell line name, default is LUSC.
