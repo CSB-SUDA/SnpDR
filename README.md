@@ -49,18 +49,98 @@ source("Rscript/1.Network_analysis.R")
 getModule(expr_file,group_file,node_cutoff=10)
 ```
 * _expr_file_: The TXT file storing expression profile, with the following format:
-  
   || sample1 | sample2 |... |
   | --- | --- | --- | --- |
   | protein1 | 2.345 | 6.480 | ... |
   | protein2 | 7.985 | 4.621  | ... |
   | ... | ... | ...  |...|
+
 * _group_file_: The TXT file storing group information.
-  
   |Sample| Group |
   | --- | --- |
   | sample1 | Tumor |
   | sample2 | Tumor |
   | sample3 | NAT |
-  | ... | ... |  
+  | ... | ... | 
+
 * _node_cutoff_: The threshold for nodes in the module is set to 10 by default.
+
+##### Annotate the functions of the modules
+```
+modl_Annot(node_file)
+```
+* _node_file_: The TXT file storing nodes of modules.
+  |node| module |
+  | --- | --- |
+  | pro1 | M1 |
+  | pro2 | M1 |
+  | ... | ... |
+
+##### GSEA of Hallmark genesets
+```
+Hallmark(node_file,FC_file)
+```
+* _node_file_: The TXT file storing nodes of modules.
+  |node| module |
+  | --- | --- |
+  | pro1 | M1 |
+  | pro2 | M1 |
+  | ... | ... |
+
+* _FC_file_: The TXT file storing log2(foldchange) of nodes.
+  |node| module |
+  | --- | --- |
+  | pro1 | M1 |
+  | pro2 | M1 |
+  | ... | ... |
+
+##### Prognosis
+```
+Prognosis(node_file,expr_file,surv_file,hit_time=1000)
+```
+* _node_file_: The TXT file storing nodes of modules.
+  |node| module | regulate |
+  | --- | --- | --- |
+  | pro1 | M1 | up |
+  | pro2 | M1 | down |
+  | ... | ... | ... |
+
+* _expr_file_: The TXT file storing expression profile, with the same format as above.
+
+* _surv_file_: The TXT file storing survival information.
+  | Sample | Time | Status |
+  | --- | --- | --- |
+  | sample1 | 3540 | 1 |
+  | sample2 | 582 | 0 |
+  | ... | ... | ... |
+
+* _hit_time_: Survival time, set to 1000 days by default.
+
+##### Conservation
+```
+Preserve(Pdata,Tdata,Pmodule)
+```
+* _Pdata_: The TXT file storing Proteomic expression profile.
+
+* _Tdata_: The TXT file storing Transcriptomic sexpression profile.
+
+* _Pmodule_: The TXT file storing nodes of Proteomic modules.
+
+```
+Similarity(node_file1, node_file2)
+```
+* _node_file1_: The TXT file storing nodes of a set of modules.
+* _node_file2_: The TXT file storing nodes of another set of modules.
+
+##### Conservation
+```
+Dynamics(edge_file,py_env)
+```
+* _edge_file_: The TXT file storing edge information of modules.
+  |node1| node2 | module |
+  | --- | --- | --- |
+  | pro1 | pro2 | M1 |
+  | pro2 | pro3 | M1 |
+  | ... | ... | ... |
+
+* _py_env_: The virtual environment path for pyUser installed using anaconda3, which can be obtained by running `conda env list` in `Anaconda Prompt`.
