@@ -120,9 +120,9 @@ Prognosis(node_file,expr_file,surv_file,hit_time=1000)
 ```
 Preserve(Pdata,Tdata,Pmodule)
 ```
-* _Pdata_: The TXT file storing Proteomic expression profile.
+* _Pdata_: The TXT file storing Proteomic expression profile, with the same format as above.
 
-* _Tdata_: The TXT file storing Transcriptomic sexpression profile.
+* _Tdata_: The TXT file storing Transcriptomic sexpression profile, with the same format as above.
 
 * _Pmodule_: The TXT file storing nodes of Proteomic modules.
 
@@ -144,3 +144,18 @@ Dynamics(edge_file,py_env)
   | ... | ... | ... |
 
 * _py_env_: The virtual environment path for pyUser installed using anaconda3, which can be obtained by running `conda env list` in `Anaconda Prompt`.
+
+
+##### Generalization
+```
+Independence(node_file,expr_file1,expr_file2)
+```
+* _node_file_: The TXT file storing nodes for a specified module.
+  |node|
+  | --- |
+  | pro1 |
+  | pro2 |
+  | ... |
+
+* _expr_file1_: The TXT file storing Proteomic expression profile, with the same format as above.
+* _expr_file2_: The TXT file storing the expression profile of another independent cohort, with the same format as above.
