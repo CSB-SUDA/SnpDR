@@ -1,5 +1,5 @@
 # SnpDR
 
 ## Framework
-![Framework](Picture/Framework.png)
+![Framework](Framework.png)
 
