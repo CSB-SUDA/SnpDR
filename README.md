@@ -37,24 +37,30 @@ source("Rscript/0.Load_packages.R")
 Preprocess the expression profile data.
 ```
 source("Rscript/1.Signatrue.R")
-	*expr_process()
-	├── input: the TXT file storing expression profile.
-	
-expr_process(df_file="path/expression.txt")
+expr_process(df_file="path/expression.txt")	#In the file:the rows represent proteins, and the columns represent samples.
 ```
-* _df_file_: The path of TXT file storing expression profile. 
+
+#### Step3: Network Analysis Module
+```
+source("Rscript/1.Network_analysis.R")
+```
+##### Identify network modules
+```
+getModule(expr_file,group_file,node_cutoff=10)
+```
+* _expr_file_: The TXT file storing expression profile, with the following format:
   
-  |protein| sample1 | sample2 |... |
+  || sample1 | sample2 |... |
   | --- | --- | --- | --- |
   | protein1 | 2.345 | 6.480 | ... |
   | protein2 | 7.985 | 4.621  | ... |
   | ... | ... | ...  |...|
-
-#### Step3: Network Analysis Module
-Preprocess the expression profile data.
-```
-source("Rscript/1.Network_analysis.R")
-
-
-expr_process(df_file="path/expression.txt")
-```
+* _group_file_: The TXT file storing group information.
+  
+  |Sample| Group |
+  | --- | --- |
+  | sample1 | Tumor |
+  | sample2 | Tumor |
+  | sample3 | NAT |
+  | ... | ... |  
+* _node_cutoff_: The threshold for nodes in the module is set to 10 by default.
