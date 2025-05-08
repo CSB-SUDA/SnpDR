@@ -37,12 +37,24 @@ source("Rscript/0.Load_packages.R")
 Preprocess the expression profile data.
 ```
 source("Rscript/1.Signatrue.R")
+	*expr_process()
+	├── input: the TXT file storing expression profile.
+	
 expr_process(df_file="path/expression.txt")
 ```
-* _expr_file_: The path of TXT file storing expression profile. 
+* _df_file_: The path of TXT file storing expression profile. 
   
   |protein| sample1 | sample2 |... |
   | --- | --- | --- | --- |
   | protein1 | 2.345 | 6.480 | ... |
   | protein2 | 7.985 | 4.621  | ... |
   | ... | ... | ...  |...|
+
+#### Step3: Network Analysis Module
+Preprocess the expression profile data.
+```
+source("Rscript/1.Network_analysis.R")
+
+
+expr_process(df_file="path/expression.txt")
+```
