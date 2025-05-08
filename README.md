@@ -88,10 +88,10 @@ Hallmark(node_file,FC_file)
   | ... | ... |
 
 * _FC_file_: The TXT file storing log2(foldchange) of nodes.
-  |node| module |
+  |node| log2FC |
   | --- | --- |
-  | pro1 | M1 |
-  | pro2 | M1 |
+  | pro1 | 1.442 |
+  | pro2 | 4.279 |
   | ... | ... |
 
 ##### Prognosis
@@ -132,7 +132,7 @@ Similarity(node_file1, node_file2)
 * _node_file1_: The TXT file storing nodes of a set of modules.
 * _node_file2_: The TXT file storing nodes of another set of modules.
 
-##### Conservation
+##### Dynamics
 ```
 Dynamics(edge_file,py_env)
 ```
