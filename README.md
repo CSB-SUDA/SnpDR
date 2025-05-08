@@ -3,7 +3,7 @@
 ## Framework
 ![Framework](Framework.png)
 
-## Installation
+## How to use the script?
 ### Requirements
 * R
 * Anaconda3
