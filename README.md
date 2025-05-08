@@ -168,7 +168,7 @@ source("Rscript/3.PRS.R")
 ```
 getDRN(expr_file)
 ```
-* _expr_file_: The TXT file storing expression profile of a specified module, with the following format:
+* _expr_file_: The TXT file storing expression profile of a specified module, with the same format as above.
 
 ##### Weight the drug response network
 ```
