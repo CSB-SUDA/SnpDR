@@ -60,7 +60,7 @@ getModule <- function(expr_file,group_file,node_cutoff=10){
   write.csv(DEs,paste0(out_dir,"/DEPs.csv"),row.names = F)
   
   # Map DEPs to physical protein-protein interaction network
-  ppi_net <- read.table("../data/Signatrue/Physical/physical_interactome.txt",header = T,sep = "\t")
+  ppi_net <- read.table("data/Signatrue/Physical/physical_interactome.txt",header = T,sep = "\t")
   colnames(ppi_net) <- c("node1","node2")
   network <- ppi_net[ppi_net$node1%in%DEPs$protein & ppi_net$node2%in%DEPs$protein,]
   

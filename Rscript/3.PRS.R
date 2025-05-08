@@ -6,8 +6,8 @@ library(dplyr)
 getDRN <- function(expr_file){
   
   testData <- read.table(expr_file,header=T,sep = "\t",row.names = 1)
-  GDSC1_Expr <- read.table("../data/Signatrue/Pharmacogenomic/GDSC/data_exp.txt",header = T,sep = "\t",check.names = F)
-  GDSC1_Res <- read.table("../data/Signatrue/Pharmacogenomic/GDSC/data_act.txt",header = T,sep = "\t",check.names = F)
+  GDSC1_Expr <- read.table("data/Signatrue/Pharmacogenomic/GDSC/data_exp.txt",header = T,sep = "\t",check.names = F)
+  GDSC1_Res <- read.table("data/Signatrue/Pharmacogenomic/GDSC/data_act.txt",header = T,sep = "\t",check.names = F)
   
   out_dir <- "result/3.PRS_analysis/A.DRN"
   dir.create(out_dir,recursive = T)
