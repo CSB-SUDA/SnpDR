@@ -26,3 +26,23 @@ The Python environment is created to use the DeepPurpose tool and PRS analysis. 
 
 ### Usage
 
+#### Step1: Prepare
+Download this repository to your local machine and extract it. Then, in R, set the working directory to the extracted folder and load the required packages:
+```
+setwd("this_file_path/SnpDR")
+source("Rscript/0.Load_packages.R")
+```
+
+#### Step2: Signatrue Module
+Preprocess the expression profile data.
+```
+source("Rscript/1.Signatrue.R")
+expr_process(df_file="path/expression.txt")
+```
+* _expr_file_: The path of TXT file storing expression profile. 
+  
+  |protein| sample1 | sample2 |... |
+  | --- | --- | --- | --- |
+  | protein1 | 2.345 | 6.480 | ... |
+  | protein2 | 7.985 | 4.621  | ... |
+  | ... | ... | ...  |...|
