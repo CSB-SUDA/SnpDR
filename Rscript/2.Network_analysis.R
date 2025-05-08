@@ -26,7 +26,7 @@ library(pROC)
 #---------------------------------------------------------------------------------------
 getModule <- function(expr_file,group_file,node_cutoff=10){
   
-  out_dir <- "2.Network_analysis/A.module_division"
+  out_dir <- "result/2.Network_analysis/A.module_division"
   dir.create(out_dir,recursive = T)
   
   expr <- read.table(expr_file,header=T,sep = "\t",row.names = 1)
@@ -156,7 +156,7 @@ getModule <- function(expr_file,group_file,node_cutoff=10){
 
 #---------------------------------------------------------------------------------------
 modl_Annot <- function(node_file){
-  out_dir <- "2.Network_analysis/A.module_annotation"
+  out_dir <- "result/2.Network_analysis/A.module_annotation"
   dir.create(out_dir,recursive = T)
   
   node_modl <- read.table(node_file,header = T)
@@ -195,7 +195,7 @@ modl_Annot <- function(node_file){
 
 #---------------------------------------------------------------------------------------
 Hallmark <- function(node_file,FC_file){
-  out_dir <- "2.Network_analysis/B.hallmark_gsea"
+  out_dir <- "result/2.Network_analysis/B.hallmark_gsea"
   dir.create(out_dir,recursive = T)
   
   node_modl <- read.table(node_file,header = T)
@@ -251,7 +251,7 @@ Hallmark <- function(node_file,FC_file){
 #---------------------------------------------------------------------------------------
 
 Prognosis <- function(node_file,expr_file,surv_file,hit_time=1000){
-  out_dir <- "2.Network_analysis/C.prognosis_association"
+  out_dir <- "result/2.Network_analysis/C.prognosis_association"
   dir.create(out_dir,recursive = T)
   
   exprData <- read.table(expr_file,header = T,row.names = 1,sep = "\t")
@@ -367,7 +367,7 @@ Prognosis <- function(node_file,expr_file,surv_file,hit_time=1000){
 
 #---------------------------------------------------------------------------------------
 Preserve <- function(Pdata,Tdata,Pmodule){
-  out_dir <- "2.Network_analysis/D.module_preservation"
+  out_dir <- "result/2.Network_analysis/D.module_preservation"
   dir.create(out_dir,recursive = T)
   
   datExprP1 <- read.table(Pdata,header = T,row.names = 1,sep = "\t")
@@ -415,7 +415,7 @@ Preserve <- function(Pdata,Tdata,Pmodule){
 
 #---------------------------------------------------------------------------------------
 Similarity <- function(node_file1, node_file2){
-  out_dir <- "2.Network_analysis/E.module_similarity"
+  out_dir <- "result/2.Network_analysis/E.module_similarity"
   dir.create(out_dir,recursive = T)
   
   node1 <- read.table(node_file1,header = T,sep = "\t")
@@ -457,7 +457,7 @@ Similarity <- function(node_file1, node_file2){
 
 #---------------------------------------------------------------------------------------
 Dynamics <- function(edge_file,py_env="C:/Users/Bin/.conda/envs/DeepPurpose"){
-  out_dir <- "2.Network_analysis/F.module_dynamics"
+  out_dir <- "result/2.Network_analysis/F.module_dynamics"
   dir.create(out_dir,recursive = T)
   
   library(reticulate)
@@ -511,7 +511,7 @@ Dynamic(edge_file="I:/Bin/F/LSCC.zzy/bio_analysis/LSCC/0.module/edge_Module.txt"
 
 #---------------------------------------------------------------------------------------
 Independence <- function(node_file,expr_file1,expr_file2){
-  out_dir <- "2.Network_analysis/G.module_similarity"
+  out_dir <- "result/2.Network_analysis/G.module_similarity"
   dir.create(out_dir,recursive = T)
   
   node_data <- read.table(node_file,header = T,sep = "\t")

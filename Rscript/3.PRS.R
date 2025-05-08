@@ -9,7 +9,7 @@ getDRN <- function(expr_file){
   GDSC1_Expr <- read.table("../data/Signatrue/Pharmacogenomic/GDSC/data_exp.txt",header = T,sep = "\t",check.names = F)
   GDSC1_Res <- read.table("../data/Signatrue/Pharmacogenomic/GDSC/data_act.txt",header = T,sep = "\t",check.names = F)
   
-  out_dir <- "3.PRS_analysis/A.DRN"
+  out_dir <- "result/3.PRS_analysis/A.DRN"
   dir.create(out_dir,recursive = T)
   setwd(out_dir)
   
@@ -71,7 +71,7 @@ getDRN <- function(expr_file){
 #--------------------------------------------------------------------------------------------------------
 getAffinity <- function(smiles_file,seq_file,DRN_file,py_env,pretrained_model='MPNN_CNN_BindingDB_IC50'){
   
-  out_dir <- "3.PRS_analysis/B.DRN_weight"
+  out_dir <- "result/3.PRS_analysis/B.DRN_weight"
   dir.create(out_dir,recursive = T)
   
    #Drug smiles
@@ -120,7 +120,7 @@ getAffinity <- function(smiles_file,seq_file,DRN_file,py_env,pretrained_model='M
 
 getPS <- function(BA_file,PPIN_file,py_env="C:/Users/Bin/.conda/envs/DeepPurpose"){
   
-  out_dir <- "3.PRS_analysis/C.PS"
+  out_dir <- "result/3.PRS_analysis/C.PS"
   dir.create(out_dir,recursive = T)
   
   use_condaenv(py_env)

@@ -5,7 +5,7 @@ library(ggplot2)
 library(cowplot)
 
 sensPredict <- function(node_file,cell="LUSC"){
-  out_dir <- "4.Prediction/A.sensitive"
+  out_dir <- "result/4.Prediction/A.sensitive"
   dir.create(out_dir,recursive = T)
   
   # Import proteins

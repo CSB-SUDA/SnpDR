@@ -7,7 +7,7 @@ library(dplyr)
 
 expr_process <- function(df_file){
   
-  out_dir <- "1.Signatrue"
+  out_dir <- "result/1.Signatrue"
   dir.create(out_dir,recursive = T)
   
   df <- read.table(df_file,header = TRUE,sep = "\t")
